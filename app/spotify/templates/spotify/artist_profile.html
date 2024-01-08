@@ -1,0 +1,16 @@
+{% if artist %}
+    <h1>{{ artist.name }}</h1>
+    <h3>{{ genres|join:" | " }}</h3>
+    <p>{{ artist.name}} Albums</p>
+    {% if albums %}
+        <ul>
+        {% for album in albums %}
+            <li>{{ album.name }} | {{ album.year }}</li>
+        {% endfor %}
+        </ul>
+    {% else  %}
+        <p> No Albums Found.</p>
+    {% endif %}
+{% else %}
+    <p>No artist found.</p>
+{% endif %}
