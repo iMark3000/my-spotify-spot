@@ -80,6 +80,7 @@ class Track(models.Model):
 class ListenLog(models.Model):
     # POSIX timestamp is converted to a str in order to be a primary key
     played_at_posix_timestamp = models.CharField(primary_key=True)
+    played_at_datetime = models.DateTimeField()
     played_at_month = models.IntegerField(choices=MONTHS)
     played_at_dow = models.CharField(choices=DAYS_OF_THE_WEEK)
     played_at_hour = models.IntegerField()  # 24 Hour
