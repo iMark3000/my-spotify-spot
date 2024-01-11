@@ -56,8 +56,7 @@ class ListenLog(models.Model):
     # POSIX timestamp is converted to a str in order to be a primary key
     played_at_posix_timestamp = models.CharField(primary_key=True)
     played_at_datetime = models.DateTimeField()
-    album = models.ForeignKey(Album, on_delete=models.CASCADE)
     track = models.ForeignKey(Track, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.track.artist.name} - {self.track} - {self.played_at_posix_timestamp}"
+        return f"{self.track} - {self.played_at_datetime}"
