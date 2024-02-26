@@ -1,19 +1,15 @@
 from django.db import models
 from django.utils.text import slugify
 
-ALBUM_TYPES = [
-    ("SINGLE", "Single"),
-    ("COMPILATION", "Compilation"),
-    ("ALBUM", "Album"),
-]
-
 
 class Artist(models.Model):
     artist_id = models.CharField(primary_key=True)
     name = models.CharField()
     slug = models.CharField(null=True, blank=True)
-    genre = models.ManyToManyField("Genre")
-    photo = models.URLField(null=True, blank=True)  # Replace with ImageField?
+    genres = models.ManyToManyField("Genre", blank=True)
+    image_small = models.URLField(null=True, blank=True)
+    image_medium = models.URLField(null=True, blank=True)
+    image_large = models.URLField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
