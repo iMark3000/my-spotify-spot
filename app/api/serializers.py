@@ -4,12 +4,13 @@ from spotify.models import Genre
 from spotify.models import Album
 from spotify.models import Track
 from spotify.models import ListenLog
+from spotify.models import TrackLog
 
 
 class ArtistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Artist
-        fields = ("artist_id", "name", "genre", "photo")
+        fields = ("__all__")
 
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -33,4 +34,11 @@ class TrackSerializer(serializers.ModelSerializer):
 class ListenLogSerializer(serializers.ModelSerializer):
     class Meta:
         model = ListenLog
+        fields = "__all__"
+
+
+
+class TrackLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TrackLog
         fields = "__all__"
