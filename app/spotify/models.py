@@ -19,8 +19,18 @@ class Artist(models.Model):
         return self.name
 
 
+class GenreFamily(models.Model):
+    name = models.CharField(unique=True)
+
+
 class Genre(models.Model):
-    name = models.CharField()
+    name = models.CharField(unique=True)
+    slug = models.SlugField(unique=True, blank=True)
+    genre_family = models.ManyToManyField(GenreFamily, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
